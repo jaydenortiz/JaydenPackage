@@ -10,5 +10,7 @@ Description: A collection of tools for statistical analysis and data visualizati
     for various research purposes. Functions include descriptive statistics, 
     data transformation, and interactive visualizations.
 License: CC0
+Depends: R (>= 3.1.2)
+Imports: dplyr, ggplot2
 Encoding: UTF-8
 LazyData: true
