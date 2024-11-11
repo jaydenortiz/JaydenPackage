@@ -4,13 +4,15 @@ Title: Statistical Analaysis and Visualization Tools
 Version: 0.1.0
 Author: person("Jayden", "Ortiz", , email = "jaydenortiz@usf.edu", role = c("aut", "cre"))
 Maintainer: Jayden Ortiz <jaydenortiz@usf.edu>
-Description: A collection of tools for statistical analysis and data visualization.
-    This package provides functions for data manipulation, statistical analysis, 
-    and customizable plotting, making it easier to analyze and visualize data 
-    for various research purposes. Functions include descriptive statistics, 
-    data transformation, and interactive visualizations.
+Description: A collection of tools for statistical analysis, data manipulation, and visualization. 
+    This package provides functions for summarizing, cleaning, and transforming data, 
+    performing descriptive statistics, and generating customizable plots for data analysis. 
+    It is designed to encourage data exploration, improve the clarity and presentation of research results, 
+    and streamline the data preparation process for analysis.
 License: CC0
 Depends: R (>= 3.1.2)
 Imports: dplyr, ggplot2
 Encoding: UTF-8
 LazyData: true
+VignetteBuilder: knitr
+Suggests: knitr, rmarkdown

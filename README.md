@@ -1,6 +1,6 @@
 Overview
 
-JaydenPackage is a collection of tools designed for statistical analysis and data visualization in R. This package provides functions for data cleaning, statistical analysis, and customizable plotting, making it easier to analyze and visualize data for different research purposes. Functions include descriptive statistics, data transformation, and data visualizations.
+JaydenPackage is a versatile collection of tools designed for statistical analysis and data visualization in R. It provides a variety of functions that streamline the processes of data cleaning, analysis, and visualization, allowing users to efficiently analyze and present their data for various research applications. The package includes features for calculating descriptive statistics, transforming/cleaning data, and creating unique visualizations.
 
 Purpose
 

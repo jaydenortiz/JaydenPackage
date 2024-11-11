@@ -1,0 +1,251 @@
+---
+title: "Using the Jayden Package"
+author: "Jayden Ortiz"
+date: "2024-11-11"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the Jayden Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+## summary_stats_plus() Function
+
+```{r}
+
+# The `summary_stats_plus()` function provides a range of summary statistics for each numeric column in a data frame. It calculates the mean, median, minimum, maximum, standard deviation, variance, and range for each numeric variable
+
+```
+
+### Parameters
+
+```{r}
+# - `data`: A data frame containing numeric columns. The function will ignore non-numeric columns.
+
+```
+
+### Return Value
+
+```{r}
+
+# A data frame with the following summary statistics for each numeric variable:
+# - `mean`: The average value.
+# - `median`: The median (50th percentile) value.
+# - `min`: The minimum value.
+# - `max`: The maximum value.
+# - `sd`: The standard deviation, which measures the dispersion of values around the mean.
+# - `variance`: The variance, another measure of dispersion.
+# - `range`: The difference between the maximum and minimum values.
+
+```
+
+### Example Usage
+
+```{r summary_stats_example}
+
+# Load the mtcars dataset
+data(mtcars)
+```
+
+```{r}
+
+# Use the summary_stats_plus() function to calculate summary statistics
+summary_stats_plus <- function(data) {
+  # Check if data is a data frame
+  if (!is.data.frame(data)) stop("Input must be a data frame.")
+  
+  # Select only numeric columns
+  numeric_data <- data[sapply(data, is.numeric)]
+  
+  # Calculate summary statistics
+  summary_stats <- data.frame(
+    variable = names(numeric_data),
+    mean = sapply(numeric_data, mean, na.rm = TRUE),
+    median = sapply(numeric_data, median, na.rm = TRUE),
+    min = sapply(numeric_data, min, na.rm = TRUE),
+    max = sapply(numeric_data, max, na.rm = TRUE),
+    sd = sapply(numeric_data, sd, na.rm = TRUE),
+    variance = sapply(numeric_data, var, na.rm = TRUE),
+    range = sapply(numeric_data, function(x) diff(range(x, na.rm = TRUE)))
+  )
+  
+  return(summary_stats)
+}
+
+```
+
+```{r}
+
+ # Display summary statistics for the mtcars dataset
+summary_stats_plus(mtcars)
+
+```
+
+## theme_jayden() Function
+
+```{r}
+
+# The `theme_jayden()` function creates a custom theme for ggplot2 to apply specific colors, fonts, and grid styles across plots.
+
+theme_jayden <- function(base_size = 12, base_family = "Arial") {
+  ggplot2::theme_minimal(base_size = base_size, base_family = base_family) +
+    ggplot2::theme(
+      plot.title = ggplot2::element_text(
+        face = "bold", 
+        hjust = 0.5, 
+        color = "#4B9CD3",     # Title color: light blue
+        family = "Helvetica",   # Title font: Helvetica
+        size = 16               # Title font size
+      ),
+      axis.title = ggplot2::element_text(
+        face = "bold", 
+        color = "#FF6347",      # Axis title color: tomato
+        size = 14               # Axis title font size
+      ),
+      axis.text = ggplot2::element_text(
+        color = "#333333",      # Axis text color: dark grey
+        size = 12               # Axis text font size
+      ),
+      panel.grid.major = ggplot2::element_line(
+        color = "#CCCCCC",      # Major grid lines color: light grey
+        size = 0.5              # Grid line thickness
+      ),
+      panel.grid.minor = ggplot2::element_blank(),  # Remove minor grid lines
+      legend.position = "bottom",
+      legend.title = ggplot2::element_text(
+        face = "italic", 
+        color = "#8B4513",      # Legend title color: brown
+        size = 12               # Legend title font size
+      ),
+      legend.text = ggplot2::element_text(
+        color = "#696969",      # Legend text color: dim grey
+        size = 10               # Legend text font size
+      )
+    )
+}
+
+```
+
+### Parameters
+
+```{r}
+
+# - `base_size`: An optional numeric value specifying the base font size for the theme. Default is 12.
+# - `base_family`: An optional character string specifying the base font family. Default is "Arial".
+
+```
+
+### Return Value
+
+```{r}
+
+# A ggplot2 theme object that applies a custom appearance to ggplot2 plots, including customized colors, fonts, and grid lines.
+
+```
+
+### Example Usage 
+
+```{r}
+
+# Load necessary libraries
+library(ggplot2)
+
+# Example plot using the theme_jayden()
+ggplot(mtcars, aes(x = mpg, y = hp)) +
+  geom_point() +
+  theme_jayden(base_size = 14, base_family = "Times New Roman")
+
+```
+
+## jayden_clean_data() Function
+
+```{r}
+
+# The `jayden_clean_data()` function performs common data cleaning tasks
+
+jayden_clean_data <- function(data) {
+  # Check if data is a data frame
+  if (!is.data.frame(data)) stop("Input must be a data frame.")
+  
+  # Convert column names to lowercase
+  names(data) <- tolower(names(data))
+  
+  # Remove rows with missing values
+  data <- data[complete.cases(data), ]
+  
+  # Remove duplicate rows
+  data <- data[!duplicated(data), ]
+  
+  # Remove leading/trailing spaces from character columns
+  data[] <- lapply(data, function(x) {
+    if (is.character(x)) {
+      x <- trimws(x)  # Remove whitespace
+    }
+    return(x)
+  })
+  
+  # Remove outliers (values more than 5 standard deviations from the mean)
+  data <- data[sapply(data, function(x) {
+    if (is.numeric(x)) {
+      return(abs(x - mean(x, na.rm = TRUE)) <= 5 * sd(x, na.rm = TRUE))
+    } else {
+      return(TRUE)  # Skip non-numeric columns
+    }
+  }), ]
+  
+  return(data)
+}
+
+```
+
+### Parameters
+
+```{r}
+
+# - `data`: A data frame containing the data to be cleaned. The function will perform the following:
+#   - Converts column names to lowercase
+#   - Removes rows with missing values
+#   - Removes duplicate rows
+#   - Strips whitespace from character columns
+#   - Removes rows where numeric columns have values more than 5 standard deviations away from the mean.
+
+```
+
+### Return Value 
+
+```{r}
+
+# A cleaned data frame with the following transformations:
+# - Column names converted to lowercase
+# - Missing rows removed
+# - Duplicate rows removed
+# - Leading/trailing whitespace removed from character columns
+# - Outliers removed from numeric columns (values beyond 5 standard deviations)
+
+```
+
+### Example Usage
+
+```{r}
+
+# Load a sample dataset
+data(mtcars)
+
+# Clean the data using the jayden_clean_data() function
+cleaned_data <- jayden_clean_data(mtcars)
+
+# View the cleaned data
+head(cleaned_data)
+
+```
+
