@@ -103,33 +103,34 @@ theme_jayden <- function(base_size = 12, base_family = "Arial") {
       plot.title = ggplot2::element_text(
         face = "bold", 
         hjust = 0.5, 
-        color = "#4B9CD3",     # Title color: light blue
-        family = "Helvetica",   # Title font: Helvetica
-        size = 16               # Title font size
+        color = "#4B9CD3",     
+        family = "Helvetica",   
+        size = 18,
+        vjust = 1                
       ),
       axis.title = ggplot2::element_text(
         face = "bold", 
-        color = "#FF6347",      # Axis title color: tomato
-        size = 14               # Axis title font size
+        color = "#FF6347",      
+        size = 16               
       ),
       axis.text = ggplot2::element_text(
-        color = "#333333",      # Axis text color: dark grey
-        size = 12               # Axis text font size
+        color = "#333333",      
+        size = 14               
       ),
       panel.grid.major = ggplot2::element_line(
-        color = "#CCCCCC",      # Major grid lines color: light grey
-        size = 0.5              # Grid line thickness
+        color = "#CCCCCC",      
+        linewidth = 0.7         
       ),
-      panel.grid.minor = ggplot2::element_blank(),  # Remove minor grid lines
+      panel.grid.minor = ggplot2::element_blank(),  
       legend.position = "bottom",
       legend.title = ggplot2::element_text(
         face = "italic", 
-        color = "#8B4513",      # Legend title color: brown
-        size = 12               # Legend title font size
+        color = "#8B4513",      
+        size = 14               
       ),
       legend.text = ggplot2::element_text(
-        color = "#696969",      # Legend text color: dim grey
-        size = 10               # Legend text font size
+        color = "#696969",      
+        size = 12               
       )
     )
 }
@@ -160,10 +161,11 @@ theme_jayden <- function(base_size = 12, base_family = "Arial") {
 # Load necessary libraries
 library(ggplot2)
 
-# Example plot using the theme_jayden()
-ggplot(mtcars, aes(x = mpg, y = hp)) +
+# Example plot
+ggplot(mtcars, aes(x = mpg, y = hp, color = factor(cyl))) +
   geom_point() +
-  theme_jayden(base_size = 14, base_family = "Times New Roman")
+  ggtitle("Car Data") +
+  theme_jayden()
 
 ```
 
