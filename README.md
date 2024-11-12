@@ -14,6 +14,14 @@ Key Features
 
 3.) Data Visualization: Generate customizable plots for data exploration and presentation.
 
+Key Functions
+
+1.) jayden_clean_data(): This function performs common data cleaning tasks on a data frame. It ensures that data is clean and ready for further analysis by addressing common data quality issues.
+
+2.) summary_stats_plus(): This function provides a comprehensive set of descriptive statistics for both numeric and categorical data. It is ideal for quickly summarizing datasets to gain insights and prepare for deeper analysis.
+
+3.) theme_jayden_style(): This function customizes the appearance of ggplot2 plots by applying a unique theme. It adjusts the plot background, axis labels, titles, and grid lines to create a visually appealing visualization.
+
 Installation
 
 You can install JaydenPackage directly from GitHub using the following command:
@@ -25,6 +33,3 @@ devtools::install_github("jaydenortiz/JaydenPackage")
 After installation, load the package using:
 
 library(JaydenPackage)
-
-For example, users can run a data summary function on their dataset with JaydenPackage::data_summary(my_data) to quickly generate insights.
-
