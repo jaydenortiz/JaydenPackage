@@ -2,10 +2,10 @@
 \alias{theme_jayden_style}
 \title{theme_jayden_style}
 \usage{
-theme_jayden_style(base_size = 12, base_family = "Arial")
+theme_jayden_style(base_size = 8, base_family = "Arial")
 }
 \arguments{
-\item{base_size}{an optional numeric value specifying the base font size for the theme. Default is 12.}
+\item{base_size}{an optional numeric value specifying the base font size for the theme. Default is 8.}
 
 \item{base_family}{an optional character string specifying the base font family. Default is "Arial".}
 }
