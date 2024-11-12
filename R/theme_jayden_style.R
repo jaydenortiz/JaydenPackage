@@ -1,4 +1,4 @@
-theme_jayden <- function(base_size = 12, base_family = "Arial") {
+theme_jayden_style <- function(base_size = 12, base_family = "Arial") {
   ggplot2::theme_minimal(base_size = base_size, base_family = base_family) +
     ggplot2::theme(
       plot.title = ggplot2::element_text(

@@ -91,13 +91,13 @@ summary_stats_plus(mtcars)
 
 ```
 
-## theme_jayden() Function
+## theme_jayden_style() Function
 
 ```{r}
 
-# The `theme_jayden()` function creates a custom theme for ggplot2 to apply specific colors, fonts, and grid styles across plots.
+# The `theme_jayden_style()` function creates a custom theme for ggplot2 to apply specific colors, fonts, and grid styles across plots.
 
-theme_jayden <- function(base_size = 12, base_family = "Arial") {
+theme_jayden_style <- function(base_size = 12, base_family = "Arial") {
   ggplot2::theme_minimal(base_size = base_size, base_family = base_family) +
     ggplot2::theme(
       plot.title = ggplot2::element_text(
@@ -165,7 +165,7 @@ library(ggplot2)
 ggplot(mtcars, aes(x = mpg, y = hp, color = factor(cyl))) +
   geom_point() +
   ggtitle("Car Data") +
-  theme_jayden()
+  theme_jayden_style()
 
 ```
 
