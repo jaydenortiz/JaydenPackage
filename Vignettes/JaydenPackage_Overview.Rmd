@@ -101,36 +101,36 @@ theme_jayden_style <- function(base_size = 12, base_family = "Arial") {
   ggplot2::theme_minimal(base_size = base_size, base_family = base_family) +
     ggplot2::theme(
       plot.title = ggplot2::element_text(
-        face = "bold", 
-        hjust = 0.5, 
-        color = "#4B9CD3",     
-        family = "Helvetica",   
+        face = "bold",
+        hjust = 0.5,
+        color = "#4B9CD3",
+        family = "Helvetica",
         size = 18,
-        vjust = 1                
+        vjust = 1
       ),
       axis.title = ggplot2::element_text(
-        face = "bold", 
-        color = "#FF6347",      
-        size = 16               
+        face = "bold",
+        color = "#FF6347",
+        size = 16
       ),
       axis.text = ggplot2::element_text(
-        color = "#333333",      
-        size = 14               
+        color = "#333333",
+        size = 14
       ),
       panel.grid.major = ggplot2::element_line(
-        color = "#CCCCCC",      
-        linewidth = 0.7         
+        color = "#CCCCCC",
+        linewidth = 0.7
       ),
-      panel.grid.minor = ggplot2::element_blank(),  
+      panel.grid.minor = ggplot2::element_blank(),
       legend.position = "bottom",
       legend.title = ggplot2::element_text(
-        face = "italic", 
-        color = "#8B4513",      
-        size = 14               
+        face = "italic",
+        color = "#8B4513",
+        size = 14
       ),
       legend.text = ggplot2::element_text(
-        color = "#696969",      
-        size = 12               
+        color = "#696969",
+        size = 12
       )
     )
 }
