@@ -5,6 +5,11 @@ jayden_clean_data <- function(data) {
   # Convert column names to lowercase
   names(data) <- tolower(names(data))
 
+  # Remove rows where any value starts with "NA" or the entire row is NA
+  data <- data[!apply(data, 1, function(row) {
+    any(sapply(row, function(x) grepl("^NA", as.character(x)))) || all(is.na(row))
+  }), ]
+
   # Remove rows with missing values
   data <- data[complete.cases(data), ]
 
@@ -18,15 +23,6 @@ jayden_clean_data <- function(data) {
     }
     return(x)
   })
-
-  # Remove outliers (values more than 5 standard deviations from the mean)
-  data <- data[sapply(data, function(x) {
-    if (is.numeric(x)) {
-      return(abs(x - mean(x, na.rm = TRUE)) <= 5 * sd(x, na.rm = TRUE))
-    } else {
-      return(TRUE)  # Skip non-numeric columns
-    }
-  }), ]
 
   return(data)
 }
